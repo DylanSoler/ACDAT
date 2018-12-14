@@ -35,7 +35,7 @@
 		<ingresos>30897.23</ingresos>
 		<Preferencias>
 			<Gusto>
-				<Descripcion>Frontón</Descripcion>
+				<Descripcion>Fronton</Descripcion>
 				<Valor>8</Valor>
 			</Gusto>
 			<Gusto>
@@ -51,7 +51,7 @@
 
 	<Persona>
 		<ID>28143</ID>
-		<nombre>Antón Tito</nombre>
+		<nombre>Anton Tito</nombre>
 		<sexo>M</sexo>
 		<sexoBuscado>F</sexoBuscado>
 		<fechaNacimiento>1980-04-20</fechaNacimiento>
@@ -74,7 +74,7 @@
 				<Valor>7</Valor>
 			</Gusto>
 			<Gusto>
-				<Descripcion>Pokèmon</Descripcion>
+				<Descripcion>Pokemon</Descripcion>
 				<Valor>8</Valor>
 			</Gusto>
 		</Preferencias>

@@ -7,16 +7,8 @@ package corazonesjaxb;
 
 /**
  *
- * @author dasoler
+ * @author NitroPC
  */
-public class CorazonesJAXB {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        
-        
-    }
+public class PersonaModificable {
     
 }
