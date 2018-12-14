@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Users/dasoler/Documents/NetBeansProjects/CorazonesJAXB/src/marcas/corazoncitos.xsd" uri="xml-resources/jaxb/Corazoncitos/corazoncitos.xsd"/>
+</catalog>
