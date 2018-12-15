@@ -1,7 +1,7 @@
 //
-// Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.5-2 
+// Este archivo ha sido generado por la arquitectura JavaTM para la implantacion de la referencia de enlace (JAXB) XML v2.2.5-2 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+// Todas las modificaciones realizadas en este archivo se perderï¿½n si se vuelve a compilar el esquema de origen. 
 // Generado el: PM.12.14 a las 09:02:06 PM CET 
 //
 
@@ -73,6 +73,11 @@ public class Corazoncitos {
             persona = new ArrayList<TipoPersona>();
         }
         return this.persona;
+    }
+    
+    public void setPersona(List<TipoPersona> listadoNuevo) {
+        
+            persona = listadoNuevo;
     }
 
 }

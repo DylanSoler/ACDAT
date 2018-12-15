@@ -8,7 +8,17 @@ package corazonesjaxb;
 import generadasXSD.Corazoncitos;
 import generadasXSD.TipoPersona;
 import java.io.File;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 /**
@@ -19,7 +29,7 @@ public class ManejadorCorazones {
     
     Corazoncitos listaCorazones;
     
-    public void guardarListaCorazonesJAXB (File archivoXML){
+    public void almacenarListaCorazonesJAXB (File archivoXML){
         JAXBContext contexto;
         try {
             contexto = JAXBContext.newInstance(Corazoncitos.class);
@@ -47,6 +57,41 @@ public class ManejadorCorazones {
             ex.printStackTrace();
         }
     }
+     
+    public void ordenarLista() {
+        
+        
+        
+    }
+    
+    public void guardarListaCorazones(File FusionCorazones){
+        JAXBContext contexto;
+        try {
+            contexto = JAXBContext.newInstance(Corazoncitos.class);
+            Marshaller marshalero = contexto.createMarshaller();
+            marshalero.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            StringWriter escribiente = new StringWriter();
+            marshalero.marshal(listaCorazones, FusionCorazones);
+            // ahora lo marshaleamos a un stream para visualizarlo
+            marshalero.marshal(listaCorazones, escribiente);
+            System.out.println("-----------------");
+            System.out.println("Object2XML:");
+            System.out.println(escribiente.toString());
+            System.out.println("-----------------");
+        } catch (JAXBException ex) {
+            Logger.getLogger(ManejadorCorazones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void mostrarLista() {
+    
+        for(TipoPersona persona:listaCorazones.getPersona()){
+                
+                System.out.println(persona.toStringBueno());
+            }
+    }
+    
+    
 
     
 }
