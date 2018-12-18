@@ -60,8 +60,16 @@ public class ManejadorCorazones {
      
     public void ordenarLista() {
         
+        TipoPersona[] corazonesArray = new TipoPersona[listaCorazones.getPersona().size()];
+        corazonesArray = listaCorazones.getPersona().toArray(corazonesArray);
+        Arrays.sort(corazonesArray);
         
+        listaCorazones.getPersona().clear();
         
+        for(TipoPersona p:corazonesArray){
+        
+            listaCorazones.getPersona().add(p);
+        }
     }
     
     public void guardarListaCorazones(File FusionCorazones){

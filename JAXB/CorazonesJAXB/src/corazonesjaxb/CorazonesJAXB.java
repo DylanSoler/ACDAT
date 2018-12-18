@@ -25,8 +25,9 @@ public class CorazonesJAXB {
         File destino = new File("src/marcas/FusionConrazones.xml");
         manej.almacenarListaCorazonesJAXB(origen);
         manej.aniadirCorazonesJAXB(origen2);
-        manej.mostrarLista();
+        manej.ordenarLista();
         manej.guardarListaCorazones(destino);
+
     }
     
 }
