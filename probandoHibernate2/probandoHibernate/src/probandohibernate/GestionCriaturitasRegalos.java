@@ -139,4 +139,75 @@ public class GestionCriaturitasRegalos
     Cuento c = (Cuento)query.uniqueResult();
     return c;
   }
+  
+  public void quitarCuento(Session sess, int idCuento, CriaturitaConRegalos cr)
+  {
+      Transaction tx = sess.beginTransaction();
+      
+      boolean salir = false;
+      boolean salir2 = false;
+      Cuento c = null;
+      
+      for(int i=0; i<cr.getListaCuentos().size() && salir2==false; i++)
+      { 
+          if(cr.getListaCuentos().get(i).getId()==idCuento) {
+              
+              c = cr.getListaCuentos().get(i);
+              
+              for(int j=0; j<c.getListaLectores().size() && salir==false; j++)
+              {
+                  if(c.getListaLectores().get(j).getId()==cr.getId()) {
+                      c.getListaLectores().remove(j);
+                      salir=true;}
+              }
+              cr.getListaCuentos().remove(i);
+              salir2 = true;
+          }
+      }
+      
+      tx.commit();
+  }
+  
+  public void asignarCuentoCriaturita(Session sess, CriaturitaConRegalos criaturaca, Cuento cuento)
+  {
+    Transaction tx = sess.beginTransaction();
+          
+    criaturaca.getListaCuentos().add(cuento);
+    
+    cuento.getListaLectores().add(criaturaca);
+    
+    tx.commit();
+  }
+  
+  public void insertarCuento(Session sess, Cuento cuento)
+  {
+    Transaction tx = sess.beginTransaction();
+
+    sess.save(cuento);
+            
+    tx.commit();
+  }
+  
+  
+  public void eliminarCuento(Session sess, Cuento cuento)
+  {
+    Transaction tx = sess.beginTransaction();
+
+    List<CriaturitaConRegalos> criaturas = cuento.getListaLectores();
+    
+    for(CriaturitaConRegalos cr:criaturas)
+    {
+        for(int i=0; i<cr.getListaCuentos().size(); i++)
+        {
+            if(cr.getListaCuentos().get(i).getId()==cuento.getId())
+            {
+                cr.getListaCuentos().remove(i);
+            }
+        }
+    }
+    
+    sess.delete(cuento);
+            
+    tx.commit();
+  }
 }

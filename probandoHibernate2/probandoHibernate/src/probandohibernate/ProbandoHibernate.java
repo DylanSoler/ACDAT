@@ -44,7 +44,11 @@ public class ProbandoHibernate {
         List<RegaloParaCriaturitaConRegalos> listadoR;
         List<Cuento> listadoCuentos;
         List<Criaturitas> listadoC;
+        CriaturitaConRegalos cr;
         int idCuento;
+        String titulo;
+        String autor;
+        String tema;
         
       do{
         
@@ -81,9 +85,9 @@ public class ProbandoHibernate {
                             {System.out.println("ID: "+c.getId()+" Nombre:"+c.getNombre());}
                         
                         do{ System.out.println("Introduce el id de la criaturita");
-                            id = tec.nextByte(); }while(id<0);
+                            id = tec.nextByte(); }while(id<1);
 
-                        CriaturitaConRegalos cr = gest.obtenerCriaturita(session, id);
+                        cr = gest.obtenerCriaturita(session, id);
                         
                         System.out.println(cr.toString());
                         for(RegaloParaCriaturitaConRegalos r:cr.getRegalitos())
@@ -96,7 +100,7 @@ public class ProbandoHibernate {
                             {System.out.println("ID: "+c.getId()+" Nombre:"+c.getNombre());}
                         
                         do{ System.out.println("Introduce el id de la criaturita");
-                            id = tec.nextByte(); }while(id<0);
+                            id = tec.nextByte(); }while(id<1);
 
                         CriaturitaConRegalos criatura = gest.obtenerCriaturita(session, id);
                         
@@ -107,7 +111,7 @@ public class ProbandoHibernate {
                         do{
                             System.out.println("Que regalo quieres quitarle? Introduce el id");
                             idRegalo = tec.nextInt();
-                        }while(idRegalo<0);
+                        }while(idRegalo<1);
                         
                         gest.quitarRegaloCriaturita(session, criatura, idRegalo);
                         System.out.println("Borrado con éxito");
@@ -120,7 +124,7 @@ public class ProbandoHibernate {
                             {System.out.println("ID: "+c.getId()+" Nombre:"+c.getNombre());}
                         
                         do{ System.out.println("Introduce el id de la criaturita");
-                            id = tec.nextByte(); }while(id<0);
+                            id = tec.nextByte(); }while(id<1);
                         
                         listadoR = (List<RegaloParaCriaturitaConRegalos>)session.createQuery("from RegaloParaCriaturitaConRegalos").list();
                         
@@ -133,7 +137,7 @@ public class ProbandoHibernate {
                         do{
                             System.out.println("Que regalo quieres asignarle? Introduce el id");
                             idRegalo = tec.nextInt();
-                        }while(idRegalo<0);
+                        }while(idRegalo<1);
                         
                         gest.asignarRegaloCriaturita(session, id, idRegalo);
                         
@@ -152,7 +156,7 @@ public class ProbandoHibernate {
                         do{
                             System.out.println("Introduce el id:");
                             id = tec.nextByte();
-                        }while(id<0);
+                        }while(id<1);
      
                         tec.nextLine();
                         
@@ -165,32 +169,32 @@ public class ProbandoHibernate {
                         do{
                             System.out.println("Introduce el id:");
                             idRegalo = tec.nextInt();
-                        }while(idRegalo<0);
+                        }while(idRegalo<1);
                         tec.nextLine();
                         System.out.println("Denominacion:");
                         denominacion = tec.nextLine();
                         do{
                             System.out.println("Ancho:");
                             ancho = tec.nextInt();
-                        }while(ancho<0);
+                        }while(ancho<1);
                         do{
                             System.out.println("Largo:");
                             largo = tec.nextInt();
-                        }while(largo<0);
+                        }while(largo<1);
                         do{
                             System.out.println("Alto:");
                             alto = tec.nextInt();
-                        }while(alto<0);
+                        }while(alto<1);
                         System.out.println("Tipo:");
                         tipo = tec.next().charAt(0);
                         do{
                             System.out.println("Edad minima:");
                             edadMinima = tec.nextInt();
-                        }while(ancho<0);
+                        }while(edadMinima<1);
                         do{
                             System.out.println("Precio:");
                             precio = tec.nextBigDecimal();
-                        }while(ancho<0);
+                        }while(edadMinima<0);
                         tec.nextLine();
                         
                         RegaloParaCriaturitaConRegalos regalazo = new RegaloParaCriaturitaConRegalos(idRegalo,denominacion,ancho,largo,alto,tipo,edadMinima,precio,null);
@@ -206,7 +210,7 @@ public class ProbandoHibernate {
                         do{
                             System.out.println("\nIntroduce el id:");
                             idRegalo = tec.nextInt();
-                        }while(idRegalo<0);
+                        }while(idRegalo<1);
                         
                         gest.eliminarRegalo(session, idRegalo);
                         System.out.println("Regalo borrado");
@@ -220,7 +224,7 @@ public class ProbandoHibernate {
                         do{
                             System.out.println("\nIntroduce el id:");
                             id = tec.nextByte();
-                        }while(id<0);
+                        }while(id<1);
                         
                         gest.eliminarCriaturita(session, id);
                         System.out.println("Eliminada con exito");
@@ -240,7 +244,7 @@ public class ProbandoHibernate {
                             {System.out.println("ID: "+c.getId()+" Nombre:"+c.getNombre());}
                         
                         do{ System.out.println("Introduce el id de la criaturita");
-                            id = tec.nextByte(); }while(id<0);
+                            id = tec.nextByte(); }while(id<1);
 
                         cr = gest.obtenerCriaturita(session, id);
                         
@@ -256,7 +260,7 @@ public class ProbandoHibernate {
                         do{
                             System.out.println("\nIntroduce el id del cuento: ");
                             idCuento = tec.nextInt();
-                        }while(idCuento<0);
+                        }while(idCuento<1);
                         
                         Cuento c = gest.obtenerCuento(session, idCuento);
                         
@@ -277,19 +281,79 @@ public class ProbandoHibernate {
 
                         criatura = gest.obtenerCriaturita(session, id);
                         
-                        System.out.println(criatura.toString());
-                        //por aqui-------
-                        for(RegaloParaCriaturitaConRegalos r:criatura.getRegalitos())
-                            {System.out.println(r.toString());} 
+                        for(Cuento cuento:criatura.getListaCuentos())
+                            {System.out.println(cuento.toString());} 
                         
                         do{
-                            System.out.println("Que regalo quieres quitarle? Introduce el id");
-                            idRegalo = tec.nextInt();
-                        }while(idRegalo<0);
+                            System.out.println("Que cuento quieres quitarle? Introduce el id");
+                            idCuento = tec.nextInt();
+                        }while(idCuento<1);
                         
-                        gest.quitarRegaloCriaturita(session, criatura, idRegalo);
-                        System.out.println("Borrado con éxito");
-                    break;                    
+                        gest.quitarCuento(session, idCuento, criatura);
+                        System.out.println("Quitado con éxito");
+                    break;
+
+                   case 14: //Asignar un cuento a una criatura
+                        listadoC = (List<Criaturitas>)session.createQuery("from Criaturitas").list();
+                        for(Criaturitas c1:listadoC)
+                            {System.out.println("ID: "+c1.getId()+" Nombre:"+c1.getNombre());}
+                        
+                        do{ System.out.println("Introduce el id de la criaturita");
+                            id = tec.nextByte(); }while(id<0);
+                        
+                        cr = gest.obtenerCriaturita(session, id);
+                        
+                        listadoCuentos = (List<Cuento>)session.createQuery("from Cuento").list();
+                        
+                        for(Cuento cuent:listadoCuentos)
+                        {System.out.println(cuent.toString());}
+                        
+                        do{
+                            System.out.println("Que cuento quieres asignarle? Introduce el id");
+                            idCuento = tec.nextInt();
+                        }while(idCuento<1);
+                        
+                        c = gest.obtenerCuento(session, idCuento);
+                        
+                        gest.asignarCuentoCriaturita(session, cr, c);
+                        
+                        System.out.println("Asignado!");
+                        
+                    break;
+                    
+                   case 15: //Crear un nuevo cuento
+                            do{
+                                System.out.println("Introduce el id del cuento");
+                                idCuento = tec.nextInt();
+                            }while(idCuento<1);
+                            tec.nextLine();
+                            System.out.println("Introduce el Titulo");
+                            titulo = tec.nextLine();
+                            System.out.println("Introduce el nombre del autor");
+                            autor = tec.nextLine();
+                            System.out.println("Introduce el tema");
+                            tema = tec.nextLine();
+                            
+                            c = new Cuento(idCuento,titulo,autor,tema);
+                            
+                            gest.insertarCuento(session, c);
+                       break;
+                       
+                   case 16: //Borrar un cuento
+                            listadoCuentos = (List<Cuento>)session.createQuery("from Cuento").list();
+                            for(Cuento c1:listadoCuentos)
+                            {System.out.println("ID: "+c1.getId()+"\nTitulo: "+c1.getTitulo()+"\nAutor:"+c1.getAutor()+"\nTema: "+c1.getTema());}
+                       
+                            do{
+                                System.out.println("Introduce el id del cuento que deseas borrar: ");
+                                idCuento = tec.nextInt();
+                            }while(idCuento<1);
+                            
+                            c = gest.obtenerCuento(session, idCuento);
+                            gest.eliminarCuento(session, c);
+                            
+                            System.out.println("Borrado con exito");
+                      break;
             }
             
         }
@@ -315,6 +379,9 @@ public class ProbandoHibernate {
         System.out.println("11- Recuperar una criaturita con todos sus cuentos");
         System.out.println("12- Recuperar un cuento y su lista de lectoras");
         System.out.println("13- Quitar un cuento a una criaturita");
+        System.out.println("14- Asignar un cuento a una criaturita");
+        System.out.println("15- Crear un nuevo cuento");
+        System.out.println("16- Borrar un cuento");
         System.out.println("--------------------------------------------------");
     }
     

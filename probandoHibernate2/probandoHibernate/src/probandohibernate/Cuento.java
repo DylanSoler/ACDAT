@@ -22,6 +22,13 @@ public class Cuento implements Serializable{
     private String autor;
     @Column(name="Tema")
     private String tema;
+
+    public Cuento(int id, String titulo, String autor, String tema) {
+        this.id = id;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.tema = tema;
+    }
     
 //    @ManyToMany(targetEntity = Criaturita.class,cascade = {CascadeType.ALL},mappedBy="listaCuentos")
     @ManyToMany(mappedBy = "listaCuentos")
