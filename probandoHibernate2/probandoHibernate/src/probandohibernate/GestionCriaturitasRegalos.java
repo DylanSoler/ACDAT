@@ -100,23 +100,14 @@ public class GestionCriaturitasRegalos
   public void eliminarCriaturita(Session ses, byte id)
   {
     Transaction tx = ses.beginTransaction();
-
-    Query query = ses.createQuery("from RegaloParaCriaturitaConRegalos where GoesTo= :idPropietario");
-    query.setInteger("idPropietario", id);
-    List<RegaloParaCriaturitaConRegalos> listadoRegalosCriaturita = (List<RegaloParaCriaturitaConRegalos>)query.list();
     
-    for(RegaloParaCriaturitaConRegalos r:listadoRegalosCriaturita)
-    {
-        r.setPropietario(null);
-    }
-    
-    query = ses.createQuery("from CriaturitaConRegalos where id= :id");
+    Query query = ses.createQuery("from CriaturitaConRegalos where id= :id");
     query.setInteger("id", id);
     CriaturitaConRegalos cr = (CriaturitaConRegalos)query.uniqueResult();
     
-    List<Cuento> cuentos = cr.getListaCuentos();
+    //List<Cuento> cuentos = cr.getListaCuentos();
     
-    for(Cuento c: cuentos)
+    for(Cuento c: cr.getListaCuentos())
     {
         for(int i=0;i<c.getListaLectores().size();i++)
         {
@@ -125,6 +116,8 @@ public class GestionCriaturitasRegalos
            }
         }
     }
+    
+    cr.getListaCuentos().clear();
     
     Criaturitas c = (Criaturitas)ses.get(Criaturitas.class,id);
     ses.delete(c);

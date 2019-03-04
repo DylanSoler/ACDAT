@@ -70,13 +70,15 @@ public class ProbandoHibernate {
                         
                         for(Criaturitas c:listadoC)
                             {System.out.println("ID: "+c.getId()+" Nombre:"+c.getNombre());}
+                        System.out.println("");
                     break;
                     
                 case 2: //Listar todos los regalos
                         listadoR = (List<RegaloParaCriaturitaConRegalos>)session.createQuery("from RegaloParaCriaturitaConRegalos").list();
                         
                         for(RegaloParaCriaturitaConRegalos r:listadoR)
-                            {System.out.println(r.toString());}
+                            {System.out.println("\n"+r.toString());}
+                        System.out.println("");
                     break;
                     
                 case 3: //Recuperar una criaturita con todos sus regalos
@@ -89,9 +91,10 @@ public class ProbandoHibernate {
 
                         cr = gest.obtenerCriaturita(session, id);
                         
-                        System.out.println(cr.toString());
+                        System.out.println("\nCriaturita: "+cr.getNombre()+"\n");
                         for(RegaloParaCriaturitaConRegalos r:cr.getRegalitos())
-                            {System.out.println(r.toString());}                     
+                            {System.out.println(r.toString());}
+                        System.out.println("");
                     break;
                     
                 case 4: //Quitar un regalo a una criaturita (sin borrarlo)
@@ -217,7 +220,7 @@ public class ProbandoHibernate {
                         
                     break;
                     
-                case 9: //Borrar una criaturita y todos sus regalos (POR PROBAR AUN)
+                case 9: //Borrar una criaturita y todos sus regalos(sin borrar los cuentos)
                         listadoC = (List<Criaturitas>)session.createQuery("from Criaturitas").list();
                         for(Criaturitas c:listadoC){System.out.println("ID: "+c.getId()+" Nombre:"+c.getNombre());}
                         
@@ -248,9 +251,10 @@ public class ProbandoHibernate {
 
                         cr = gest.obtenerCriaturita(session, id);
                         
-                        System.out.println(cr.toString());
+                        System.out.println("\nCriatura: "+cr.getNombre());
+                        System.out.println("Cuentos:");
                         for(Cuento c:cr.getListaCuentos())
-                            {System.out.println(c.toString());}
+                            {System.out.println(c.getTitulo());}
                     break;
                     
                 case 12: //Recuperar un cuento y su lista de lectoras
@@ -264,11 +268,13 @@ public class ProbandoHibernate {
                         
                         Cuento c = gest.obtenerCuento(session, idCuento);
                         
-                        System.out.println(c.toString());
+                        System.out.println("\nCuento: "+c.getTitulo());
+                        System.out.println("\nLectores:");
                         for(CriaturitaConRegalos criat : c.getListaLectores())
                         {
-                            System.out.println(criat.toString());
+                            System.out.println(criat.getNombre());
                         }
+                        System.out.println("");
                     break;
 
                 case 13: //Quitar un cuento a una criaturita (sin borrarlo)
@@ -281,6 +287,8 @@ public class ProbandoHibernate {
 
                         criatura = gest.obtenerCriaturita(session, id);
                         
+                        if(criatura.getListaCuentos().size()>0)
+                        {
                         for(Cuento cuento:criatura.getListaCuentos())
                             {System.out.println(cuento.toString());} 
                         
@@ -291,6 +299,9 @@ public class ProbandoHibernate {
                         
                         gest.quitarCuento(session, idCuento, criatura);
                         System.out.println("Quitado con éxito");
+                        }else {
+                            System.out.println("No tiene cuentos");
+                        }
                     break;
 
                    case 14: //Asignar un cuento a una criatura
